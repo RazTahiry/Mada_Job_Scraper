@@ -43,7 +43,7 @@ def get_pages(pages_quantity):
 
 
 def arguments_parser():
-    parser = argparse.ArgumentParser(description='Scrape jobs from portaljob-madagascar.com')
+    parser = argparse.ArgumentParser(description='Scrape job listings from portaljob-madagascar.com')
     parser.add_argument('pages_quantity', metavar='N', type=int, choices=range(1, 481), 
                             help='Quantity of paginations to display')
     parser.add_argument('--csv', dest='csv_file', help='CSV file to save the job descriptions')
