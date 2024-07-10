@@ -23,7 +23,7 @@ Ce script est conçu pour extraire des offres d'emploi du site [portaljob-madaga
 git clone https://github.com/RazTahiry/Mada_Job_Scraper.git
 ```
 
-3. Installez les bibliothèques requises à l'aide de pip :
+2. Installez les bibliothèques requises à l'aide de pip :
 
 ```bash
 pip install requests beautifulsoup4
