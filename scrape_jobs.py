@@ -1,3 +1,10 @@
+# This is just a simple script to scrape a different
+# kind of jobs published at portaljob-madagascar.com
+#
+# Author : Tahiry Razanamara
+# Date : 10 July 2024
+
+
 import requests
 from bs4 import BeautifulSoup
 import argparse
@@ -10,6 +17,7 @@ def parse_job(url, csv_writer=None):
 
     Parameters:
     url (str): The URL to scrape job descriptions from.
+    csv_writer (csv.writer, optional): CSV writer object to write job descriptions to a CSV file.
     """
     try:
         response = requests.get(url)
@@ -33,6 +41,7 @@ def parse_job(url, csv_writer=None):
             description_href = a_tags[-1]['href'] if a_tags else "Non disponible."
 
             if csv_writer:
+                date_limit_value = date_limit_value.replace("Date limite : ", "")
                 csv_writer.writerow([entreprise, job_title, contract_type, date_limit_value, description_href])
             else:
                 print(f"Entreprise : {entreprise}")
@@ -40,6 +49,7 @@ def parse_job(url, csv_writer=None):
                 print(f"Type de contrat : {contract_type}")
                 print(f"{date_limit_value}")
                 print(f"Detail : {description_href}\n")
+
 
 def get_pages(pages_quantity):
     """
@@ -63,7 +73,8 @@ def arguments_parser():
     Namespace: The parsed command-line arguments.
     """
     parser = argparse.ArgumentParser(description='Scrape jobs from portaljob-madagascar.com')
-    parser.add_argument('pages_quantity', metavar='N', type=int, choices=range(1, 481), help='Quantity of paginations to display')
+    parser.add_argument('pages_quantity', metavar='N', type=int, choices=range(1, 481), 
+                            help='Quantity of paginations to display')
     parser.add_argument('--csv', dest='csv_file', help='CSV file to save the job descriptions')
     return parser.parse_args()
 
@@ -77,14 +88,14 @@ if __name__ == "__main__":
 
     csv_writer = None
     if csv_file:
-        csv_file = open(csv_file, mode='w', newline='', encoding='utf-8')
+        with open(csv_file, mode='w', newline='', encoding='utf-8') as csv_file:
 
-        csv_writer = csv.writer(csv_file)
-        csv_writer.writerow(['Entreprise', 'Poste', 'Type de contrat', 'Date limite', 'Detail'])
-        
-        print("Wait! Writing jobs to csv file...")
-        for index, url in enumerate(urls, start=1):
-            parse_job(url, csv_writer)
+            csv_writer = csv.writer(csv_file, quoting=csv.QUOTE_MINIMAL)
+            csv_writer.writerow(['Entreprise', 'Poste', 'Type de contrat', 'Date limite', 'Detail'])
+            
+            print("Wait! Writing jobs to csv file...")
+            for index, url in enumerate(urls, start=1):
+                parse_job(url, csv_writer)
 
         csv_file.close()
         print("Done!")
@@ -95,3 +106,4 @@ if __name__ == "__main__":
         for index, url in enumerate(urls, start=1):
             print(f"------------------------------ Page {index} ------------------------------\n")
             parse_job(url)
+            
