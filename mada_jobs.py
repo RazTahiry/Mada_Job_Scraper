@@ -18,7 +18,7 @@ def parse_job(url):
             a_tag = job_description.findAll("a")
             description_href = a_tag[-1]['href']
 
-            print(f"Entreprise: {entreprise}\nPoste: {job_title}\nType de contrat: {contract_type}\nDescription: {description_href}")
+            print(f"Entreprise: {entreprise}\nPoste: {job_title}\nType de contrat: {contract_type}\nDetail: {description_href}")
             print("\n")
 
 
