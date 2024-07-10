@@ -1,10 +1,3 @@
-# This is just a simple script to scrape a different
-# kind of jobs published at portaljob-madagascar.com
-#
-# Author : Tahiry Razanamara
-# Date : 10 July 2024
-
-
 import requests
 from bs4 import BeautifulSoup
 import argparse
@@ -12,13 +5,6 @@ import csv
 
 
 def parse_job(url, csv_writer=None):
-    """
-    Parses and prints job descriptions from the given URL, and optionally writes them to a CSV file.
-
-    Parameters:
-    url (str): The URL to scrape job descriptions from.
-    csv_writer (csv.writer, optional): CSV writer object to write job descriptions to a CSV file.
-    """
     try:
         response = requests.get(url)
         response.raise_for_status()
@@ -52,26 +38,11 @@ def parse_job(url, csv_writer=None):
 
 
 def get_pages(pages_quantity):
-    """
-    Generates a list of URLs for the given number of pages.
-
-    Parameters:
-    pages_quantity (int): The number of pagination pages to generate URLs for.
-
-    Returns:
-    list: A list of URLs for the given number of pages.
-    """
     base_url = "https://www.portaljob-madagascar.com/emploi/liste"
     return [base_url] + [f"{base_url}/page/{page_number}" for page_number in range(2, pages_quantity + 1)]
 
 
 def arguments_parser():
-    """
-    Parses and returns command-line arguments.
-
-    Returns:
-    Namespace: The parsed command-line arguments.
-    """
     parser = argparse.ArgumentParser(description='Scrape jobs from portaljob-madagascar.com')
     parser.add_argument('pages_quantity', metavar='N', type=int, choices=range(1, 481), 
                             help='Quantity of paginations to display')
@@ -84,7 +55,6 @@ if __name__ == "__main__":
     pages_quantity = args.pages_quantity
     csv_file = args.csv_file
     urls = get_pages(pages_quantity)
-    page_number = 1
 
     csv_writer = None
     if csv_file:
