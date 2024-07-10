@@ -40,7 +40,7 @@ The script can be run from the command line. It accepts two arguments:
 1. **Display job details in the console:**
 
 ```bash
-python job_scraper.py 3
+python mada_job_scraper.py 3
 ```
 
 This command will scrape job listings from the first 3 pages and display the details in the console.
@@ -48,7 +48,7 @@ This command will scrape job listings from the first 3 pages and display the det
 2. **Save job details to a CSV file:**
 
 ```bash
-python job_scraper.py 3 --csv jobs.csv
+python mada_job_scraper.py 3 --csv jobs.csv
 ```
 
 This command will scrape job listings from the first 3 pages and save the details to `jobs.csv`.
