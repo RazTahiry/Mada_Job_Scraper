@@ -1,5 +1,3 @@
-# Job Scraper Script README
-
 ## Aperçu
 
 Ce script est conçu pour extraire des offres d'emploi du site [portaljob-madagascar.com](https://www.portaljob-madagascar.com) et les afficher soit dans la console, soit les enregistrer dans un fichier CSV.
