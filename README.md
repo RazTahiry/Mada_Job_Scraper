@@ -1,59 +1,65 @@
-## Overview
+# Job Scraper Script README
 
-This script is designed to scrape job listings from the website [portaljob-madagascar.com](https://www.portaljob-madagascar.com) and either display them in the console or save them to a CSV file.
+## Aperçu
 
-## Features
+Ce script est conçu pour extraire des offres d'emploi du site [portaljob-madagascar.com](https://www.portaljob-madagascar.com) et les afficher soit dans la console, soit les enregistrer dans un fichier CSV.
 
-- Fetch job listings from multiple pages.
-- Display job details such as the company name, job title, contract type, application deadline, and job description link.
-- Save job details to a CSV file.
+## Fonctionnalités
 
-## Requirements
+- Récupérer les offres d'emploi de plusieurs pages.
+- Afficher les détails des offres d'emploi tels que le nom de l'entreprise, le titre du poste, le type de contrat, la date limite de candidature et le lien vers la description de l'offre.
+- Enregistrer les détails des offres d'emploi dans un fichier CSV.
+
+## Exigences
 
 - Python 3.x
-- `requests` library
-- `beautifulsoup4` library
-- `argparse` library (standard with Python)
+- Bibliothèque `requests`
+- Bibliothèque `beautifulsoup4`
+- Bibliothèque `argparse` (standard avec Python)
 
 ## Installation
 
-1. Clone the repository or download the script.
-2. Install the required libraries using pip:
+1. Clonez le dépôt :
+
+```bash
+git clone https://github.com/RazTahiry/Mada_Job_Scraper.git
+```
+
+3. Installez les bibliothèques requises à l'aide de pip :
 
 ```bash
 pip install requests beautifulsoup4
 ```
 
-## Usage
+## Utilisation
 
-The script can be run from the command line. It accepts two arguments:
-1. The number of pages to scrape (required, an integer between 1 and 480).
-2. An optional argument to specify a CSV file to save the job details.
+Le script peut être exécuté depuis la ligne de commande. Il accepte deux arguments :
+1. Le nombre de pages à extraire (requis, un entier entre 1 et 480).
+2. Un argument optionnel pour spécifier un fichier CSV où enregistrer les détails des offres d'emploi.
 
-### Command Line Arguments
+### Arguments en ligne de commande
 
-- `pages_quantity` (required): Number of pages to scrape.
-- `--csv` (optional): Path to the CSV file where job details will be saved.
+- `pages_quantity` (requis) : Nombre de pages à extraire.
+- `--csv` (optionnel) : Chemin vers le fichier CSV où les détails des offres d'emploi seront enregistrés.
 
-### Examples
+### Exemples
 
-1. **Display job details in the console:**
+1. **Afficher les détails des offres d'emploi dans la console :**
 
 ```bash
 python mada_job_scraper.py 3
 ```
 
-This command will scrape job listings from the first 3 pages and display the details in the console.
+Cette commande extraira les offres d'emploi des 3 premières pages et affichera les détails dans la console.
 
-2. **Save job details to a CSV file:**
+2. **Enregistrer les détails des offres d'emploi dans un fichier CSV :**
 
 ```bash
 python mada_job_scraper.py 3 --csv jobs.csv
 ```
 
-This command will scrape job listings from the first 3 pages and save the details to `jobs.csv`.
+Cette commande extraira les offres d'emploi des 3 premières pages et enregistrera les détails dans `jobs.csv`.
 
-## Notes
+## Remarques
 
-- The script handles up to 480 pages due to the pagination limit on the website.
-- Ensure that the website structure remains unchanged; otherwise, the script may need modifications to adapt to any changes.
+- Le script gère jusqu'à 480 pages en raison de la limite de pagination sur le site.
