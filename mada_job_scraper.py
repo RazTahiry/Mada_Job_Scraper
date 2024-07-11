@@ -42,9 +42,28 @@ def get_pages(pages_quantity):
     return [base_url] + [f"{base_url}/page/{page_number}" for page_number in range(2, pages_quantity + 1)]
 
 
+def get_last_page():
+    url = "https://www.portaljob-madagascar.com/emploi/liste"
+
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+    except requests.exceptions.RequestException as e:
+        print(f"Failed to fetch URL {url}: {e}")
+        return
+
+    soup = BeautifulSoup(response.text, "html5lib")
+
+    div_last_page = soup.find("div", class_="pagination")
+    ul_last_page = div_last_page.find("ul")
+    li_last_page = ul_last_page.find_all("li")
+    return li_last_page[-1].get_text(strip=True)
+
+
 def arguments_parser():
+    last_page = get_last_page()
     parser = argparse.ArgumentParser(description='Scrape job listings from portaljob-madagascar.com')
-    parser.add_argument('pages_quantity', metavar='N', type=int, choices=range(1, 481), 
+    parser.add_argument('pages_quantity', metavar='N', type=int, choices=range(1, int(last_page)), 
                             help='Quantity of paginations to display')
     parser.add_argument('--csv', dest='csv_file', help='CSV file to save the job descriptions')
     return parser.parse_args()
