@@ -32,7 +32,7 @@ pip install requests beautifulsoup4
 ## Utilisation
 
 Le script peut être exécuté depuis la ligne de commande. Il accepte deux arguments :
-1. Le nombre de pages à extraire (requis, un entier entre 1 et 480).
+1. Le nombre de pages à extraire (requis).
 2. Un argument optionnel pour spécifier un fichier CSV où enregistrer les détails des offres d'emploi.
 
 ### Arguments en ligne de commande
@@ -57,7 +57,3 @@ python mada_job_scraper.py 3 --csv jobs.csv
 ```
 
 Cette commande extraira les offres d'emploi des 3 premières pages et enregistrera les détails dans `jobs.csv`.
-
-## Remarques
-
-- Le script gère jusqu'à 480 pages en raison de la limite de pagination sur le site.
